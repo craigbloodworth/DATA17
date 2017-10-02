@@ -1,0 +1,24 @@
+{
+  "name": "data17",
+  "version": "1.0.0",
+  "description": "Example scripts from 'Always REST for the wicked...the sequel: Automate your Tableau Life' presentation by Craig Bloodworth at DATA17",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigbloodworth/data17.git"
+  },
+  "author": "Craig Bloodworth",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/craigbloodworth/data17/issues"
+  },
+  "homepage": "https://github.com/craigbloodworth/data17#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "promise": "^8.0.1",
+    "request": "^2.82.0"
+  }
+}
