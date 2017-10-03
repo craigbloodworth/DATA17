@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tableau Server Duplicating App</title>
+    <link rel="stylesheet" href="css/master.css">
+    <script src="js/socket.io.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+    <div class="section left" id="serverA">
+      <div class="serverInfo">
+        <h1>USA Server</h1>
+        <b>URL: </b><span id="serverAUrl"></span><br/>
+        <b>Site: </b><span id="serverASite"></span><br/>
+        <b>ID: </b><span id="serverAID"></span><br/>
+        <b>Token: </b><span id="serverAToken"></span><br/>
+        <h3>Console:</h3>
+      </div>
+      <div class="console" id="outputA">
+
+      </div>
+    </div>
+    <div class="section right" id="serverB">
+      <div class="serverInfo">
+        <h1>UK Server</h1>
+        <b>URL: </b><span id="serverBUrl"></span><br/>
+        <b>Site: </b><span id="serverBSite"></span><br/>
+        <b>ID: </b><span id="serverBID"></span><br/>
+        <b>Token: </b><span id="serverBToken"></span><br/>
+        <h3>Console:</h3>
+      </div>
+      <div class="console" id="outputB">
+
+      </div>
+    <div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+body {
+  height: 95vh;
+  font-family: "Open Sans", sans-serif;
+}
+h3 {
+  margin-bottom: 0px;
+}
+.section {
+  min-height: 100vh;
+  width: 50%;
+  position: fixed;
+  top: 0;
+}
+.section.left {
+  left: 0;
+}
+.section.right {
+  right: 0;
+}
+.serverInfo {
+  margin-left: 10px;
+}
+.console {
+  border: #9a9a9a 1px solid;
+  min-height: 80vh;
+  margin: 10px;
+}
