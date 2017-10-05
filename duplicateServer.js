@@ -1,5 +1,5 @@
 const express = require('express');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 var http = require('http'),
     app = express();
 var io = require('socket.io')(require('http').Server(app));
@@ -43,12 +43,14 @@ var checkForUpdates = function(previousA, previousB) {
       message: 'Checking for new workbooks'
     });
     latestA = workbookA;
+    //console.log(previousA, latestA);
     duplicate.checkWorkbooks(serverB, function(workbookB){
       io.emit('checkWorkbooks', {
         server: 'B',
         message: 'Checking for new workbooks'
       });
       latestB = workbookB;
+      //console.log(previousB, latestB);
       if (previousA == "" && previousB == "") {
         io.emit('checkWorkbooks', {
           server: 'A',
@@ -67,7 +69,8 @@ var checkForUpdates = function(previousA, previousB) {
           server: 'A',
           message: 'New workbook found ('+ latestA[0].name +')'
         });
-        transferWorkbook(serverA, serverB, latestA[0], function(savedWorkbook) {
+        duplicate.transferWorkbook(serverA, serverB, latestA[0], function(savedWorkbook) {
+          console.log(savedWorkbook);
           io.emit('checkWorkbooks', {
             server: 'B',
             message: 'Workbook received'
@@ -76,7 +79,7 @@ var checkForUpdates = function(previousA, previousB) {
             server: 'A',
             message: 'Workbook transfer complete'
           });
-          latestB = savedWorkbook;
+          latestB = [savedWorkbook];
           setTimeout(function() {
             checkForUpdates(latestA, latestB);
           }, 30000)
@@ -86,7 +89,8 @@ var checkForUpdates = function(previousA, previousB) {
           server: 'B',
           message: 'New workbook found ('+ latestB[0].name +')'
         });
-        transferWorkbook(serverB, serverA, latestB[0], function(savedWorkbook) {
+        duplicate.transferWorkbook(serverB, serverA, latestB[0], function(savedWorkbook) {
+          console.log(savedWorkbook);
           io.emit('checkWorkbooks', {
             server: 'A',
             message: 'Workbook received'
@@ -95,7 +99,7 @@ var checkForUpdates = function(previousA, previousB) {
             server: 'B',
             message: 'Workbook transfer complete'
           });
-          latestA = savedWorkbook;
+          latestA = [savedWorkbook];
           setTimeout(function() {
             checkForUpdates(latestA, latestB);
           }, 30000)
@@ -115,9 +119,4 @@ var checkForUpdates = function(previousA, previousB) {
       }
     });
   });
-}
-
-
-var transferWorkbook = function(source, destination, workbook, callback) {
-
 }
