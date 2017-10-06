@@ -48,15 +48,13 @@ var downloadWorkbook = function(creds, workbookID, callback) {
     //.pipe(fs.createWriteStream('temp/'+contentUrl+'.twb'))
     .on('response', function(res) {
       // extract filename
-      console.log(res.headers);
       var filename = regexp.exec( res.headers['content-disposition'] )[1];
-      console.log(filename);
       // create file write stream
-      var fws = fs.createWriteStream( 'temp/' + filename );
+      var fws = fs.createWriteStream( '/tmp/' + filename );
       // setup piping
       res.pipe( fws );
       res.on( 'end', function(){
-        callback('temp/' + filename);
+        callback('/tmp/' + filename);
       });
     })
 };
@@ -70,7 +68,6 @@ var getDefaultProject = function(creds, callback) {
 
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
-    console.log(body);
     callback(JSON.parse(body).projects.project[0]);
   });
 };
@@ -118,19 +115,19 @@ var publishWorkbook = function(creds, filepath, workbookName, projectID, callbac
     });
 };
 
-const serverAUrl = "https://tableauserver.theinformationlab.co.uk";
-const serverBUrl = "https://tableauserver.theinformationlab.co.uk";
+const serverAUrl = "http://tableau-california.theinformationlab.com";
+const serverBUrl = "http://tableau-dublin.theinformationlab.ie";
 
 module.exports = {
   init: function(callback) {
-    login(serverAUrl, 'zen', 'tableauzen', 'demo', function(creds) {
+    login(serverAUrl, 'craig', 'craig', '', function(creds) {
       var serverA = {
         url : serverAUrl,
         siteID : creds.site.id,
         contentUrl: creds.site.contentUrl,
         token : creds.token
       }
-      login(serverBUrl, 'zen', 'tableauzen', 'DATA17', function(creds) {
+      login(serverBUrl, 'craig', 'craig', '', function(creds) {
         var serverB = {
           url : serverBUrl,
           siteID : creds.site.id,

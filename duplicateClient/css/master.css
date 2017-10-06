@@ -1,6 +1,6 @@
 body {
-  height: 95vh;
-  font-family: "Open Sans", sans-serif;
+  font-size: 14pt;
+  background-color: #fbfbfb;
 }
 h3 {
   margin-bottom: 0px;
@@ -21,7 +21,15 @@ h3 {
   margin-left: 10px;
 }
 .console {
+  background-color: #fff;
   border: #9a9a9a 1px solid;
-  min-height: 80vh;
+  min-height: 67vh;
   margin: 10px;
+  font-family: monospace;
+  height: 67vh;
+  overflow-x: auto;
+}
+.mdl-list__item {
+  min-height: 40px;
+  padding: 4px;
 }
