@@ -126,6 +126,6 @@ var getStaleUsers = function(callback) {
     });
 }
 
-login('craig', 'd0ux%oBWrDxRP@*6aWyTJL')
+login('username', 'password')
   .then(getSites)
   .then(sites => checkUsers(sites))

@@ -151,7 +151,7 @@ process.on('unhandledRejection', (reason) => {
     console.log('Reason: ' + reason);
 });
 
-login('zen', 'tableauzen', 'til2')
+login('username', 'password', 'demo')
   .then(allViews)
   .then(views => findDeadWorkbooks(views))
   .then(workbooks => markWorkbookstoDelete(workbooks))

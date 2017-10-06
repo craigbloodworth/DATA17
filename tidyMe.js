@@ -95,7 +95,7 @@ process.on('unhandledRejection', (reason) => {
 //         |-- Take a list of these 'dead' workbooks and tag them with 'Delete'
 //            |-- Finally return the number of workbooks tagged
 
-login('zen', 'tableauzen')
+login('username', 'password')
   .then(allViews)
   .then(views => findDeadWorkbooks(views))
   .then(workbooks => markWorkbookstoDelete(workbooks))
