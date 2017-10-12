@@ -5,6 +5,10 @@ var async = require("async");
 const serverUrl = "https://tableauserver.theinformationlab.co.uk";
 var siteId = token = "";
 
+function DifferenceInDays(firstDate, secondDate) {
+    return Math.round((secondDate-firstDate)/(1000*60*60*24));
+}
+
 var login = function(username, password, siteUrl) {
   return new Promise(function(resolve, reject) {
     var options = {
@@ -117,10 +121,6 @@ var findDeadWorkbooks = function(views) {
   });
 }
 
-function DifferenceInDays(firstDate, secondDate) {
-    return Math.round((secondDate-firstDate)/(1000*60*60*24));
-}
-
 var markWorkbookstoDelete = function(workbooks) {
   return new Promise(function(resolve, reject) {
     var tagCount = 0;
@@ -151,7 +151,7 @@ process.on('unhandledRejection', (reason) => {
     console.log('Reason: ' + reason);
 });
 
-login('username', 'password', 'demo')
+login('username', 'password', 'site')
   .then(allViews)
   .then(views => findDeadWorkbooks(views))
   .then(workbooks => markWorkbookstoDelete(workbooks))
